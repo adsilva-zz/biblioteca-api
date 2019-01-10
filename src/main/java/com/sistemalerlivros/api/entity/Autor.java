@@ -16,11 +16,11 @@ public class Autor {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int idAutor;
+	private Long idAutor;
 	private String nome;
 	private LocalDate dataNascimento;
 	@ManyToMany(mappedBy = "autor", cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-	private List<Livro> livrosAutor;
+	private List<Livro> livro;
 
 	public Autor() {
 
@@ -30,7 +30,15 @@ public class Autor {
 		super();
 		this.nome = nome;
 		this.dataNascimento = dataNascimento;
-		this.livrosAutor = new ArrayList<>();
+		this.livro = new ArrayList<>();
+	}
+
+	public List<Livro> getLivro() {
+		return livro;
+	}
+
+	public void setLivro(List<Livro> livro) {
+		this.livro = livro;
 	}
 
 	public String getNome() {
@@ -49,7 +57,7 @@ public class Autor {
 		this.dataNascimento = dataNascimento;
 	}
 
-	public int getIdAutor() {
+	public Long getIdAutor() {
 		return idAutor;
 	}
 
@@ -57,5 +65,4 @@ public class Autor {
 	public String toString() {
 		return "Autor [idAutor=" + idAutor + ", nome=" + nome + ", dataNascimento=" + dataNascimento + "]";
 	}
-
 }

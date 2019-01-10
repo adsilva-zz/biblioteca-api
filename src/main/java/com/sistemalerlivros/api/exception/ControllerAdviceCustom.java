@@ -20,4 +20,10 @@ public class ControllerAdviceCustom {
 		ResponseEntity<Message<List<Genero>>> response = new ResponseEntity<>(mensagem, HttpStatus.BAD_REQUEST);
 		return response;
 	}
+
+	@ExceptionHandler(LivroNaoEncontradoException.class)
+	public ResponseEntity<Message<Long>> livroNaoEncontradoException(LivroNaoEncontradoException ex) {
+		Message<Long> mensagem = new Message<>("Livro não encontrado", ex.getIdLivro());
+		return new ResponseEntity<Message<Long>>(mensagem, HttpStatus.BAD_REQUEST);
+	}
 }

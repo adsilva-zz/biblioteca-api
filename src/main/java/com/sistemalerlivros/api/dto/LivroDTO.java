@@ -8,7 +8,6 @@ import javax.persistence.Enumerated;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-import com.sistemalerlivros.api.entity.Autor;
 import com.sistemalerlivros.api.entity.Genero;
 
 public class LivroDTO {
@@ -16,7 +15,7 @@ public class LivroDTO {
 	@NotEmpty
 	private String titulo;
 	@NotEmpty
-	private List<Autor> autor;
+	private List<Integer> autor;
 	@NotNull
 	private LocalDate dataLancamento;
 	@Enumerated(EnumType.STRING)
@@ -27,7 +26,7 @@ public class LivroDTO {
 	@NotNull
 	private int notaMedia;
 
-	public LivroDTO(String titulo, List<Autor> autor, LocalDate dataLancamento, Genero genero, String descricao,
+	public LivroDTO(String titulo, List<Integer> autor, LocalDate dataLancamento, Genero genero, String descricao,
 			int notaMedia) {
 		super();
 		this.titulo = titulo;
@@ -50,11 +49,11 @@ public class LivroDTO {
 		this.titulo = titulo;
 	}
 
-	public List<Autor> getAutor() {
+	public List<Integer> getAutor() {
 		return autor;
 	}
 
-	public void setListaAutor(List<Autor> autor) {
+	public void setListaAutor(List<Integer> autor) {
 		this.autor = autor;
 	}
 

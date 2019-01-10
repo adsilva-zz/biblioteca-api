@@ -1,7 +1,6 @@
 package com.sistemalerlivros.api.entity;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -25,7 +24,7 @@ public class Livro implements Comparable<Livro> {
 	@Column(length = 150)
 	private String titulo;
 	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-	@JoinTable(name = "Livros_Autor", joinColumns = {
+	@JoinTable(name = "LIVRO_AUTOR", joinColumns = {
 			@JoinColumn(name = "idLivro", referencedColumnName = "idLivro") }, inverseJoinColumns = {
 					@JoinColumn(name = "idAutor", referencedColumnName = "idAutor") })
 	private List<Autor> autor;
@@ -36,12 +35,12 @@ public class Livro implements Comparable<Livro> {
 	private String descricao;
 	private int notaMedia;
 
-	public Livro(Long idLivro, String titulo, LocalDate dataLancamento, LocalDate dataCadastro, Genero genero,
-			String descricao, int notaMedia) {
+	public Livro(Long idLivro, String titulo, List<Autor> autor, LocalDate dataLancamento, LocalDate dataCadastro,
+			Genero genero, String descricao, int notaMedia) {
 		super();
 		this.idLivro = idLivro;
 		this.titulo = titulo;
-		this.autor = new ArrayList<>();
+		this.autor = autor;
 		this.dataLancamento = dataLancamento;
 		this.dataCadastro = dataCadastro;
 		this.genero = genero;
@@ -73,8 +72,8 @@ public class Livro implements Comparable<Livro> {
 		return autor;
 	}
 
-	public void setListaAutor(List<Autor> listaAutores) {
-		this.autor = listaAutores;
+	public void setListaAutor(List<Autor> autor) {
+		this.autor = autor;
 	}
 
 	public LocalDate getDataLancamento() {
