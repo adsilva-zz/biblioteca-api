@@ -16,4 +16,6 @@ public interface LivroServico {
 	public boolean deletarLivro(Long idLivro);
 
 	public Livro atualizarLivro(LivroDTO livro, Long id);
+
+	public List<Livro> listarLivros(List<Long> listaIdLivros);
 }

@@ -26,4 +26,10 @@ public class ControllerAdviceCustom {
 		Message<Long> mensagem = new Message<>("Livro não encontrado", ex.getIdLivro());
 		return new ResponseEntity<Message<Long>>(mensagem, HttpStatus.BAD_REQUEST);
 	}
+
+	@ExceptionHandler(AutorNaoEncontradoException.class)
+	public ResponseEntity<Message<Long>> autorNaoEncontradoException(AutorNaoEncontradoException ex) {
+		Message<Long> mensagem = new Message<>("Autor não encontrado", ex.getIdAutor());
+		return new ResponseEntity<Message<Long>>(mensagem, HttpStatus.BAD_REQUEST);
+	}
 }

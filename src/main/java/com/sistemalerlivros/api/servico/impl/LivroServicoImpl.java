@@ -1,6 +1,7 @@
 package com.sistemalerlivros.api.servico.impl;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -17,7 +18,9 @@ import com.sistemalerlivros.api.dto.LivroDTO;
 import com.sistemalerlivros.api.entity.Genero;
 import com.sistemalerlivros.api.entity.Livro;
 import com.sistemalerlivros.api.exception.GeneroException;
+import com.sistemalerlivros.api.exception.LivroNaoEncontradoException;
 import com.sistemalerlivros.api.repository.LivroRepository;
+import com.sistemalerlivros.api.servico.AutorServico;
 import com.sistemalerlivros.api.servico.LivroServico;
 
 @Service
@@ -25,6 +28,9 @@ public class LivroServicoImpl implements LivroServico {
 
 	@Autowired
 	private LivroRepository livroRepository;
+
+	@Autowired
+	private AutorServico autorServico;
 
 	@Autowired
 	private ConversionService conversionService;
@@ -73,20 +79,35 @@ public class LivroServicoImpl implements LivroServico {
 	}
 
 	@Override
-	public Livro atualizarLivro(LivroDTO livroDTO, Long id) {
+	public Livro atualizarLivro(LivroDTO novoLivro, Long id) {
 		Livro livro = this.buscarLivro(id);
 		if (ObjectUtils.isEmpty(livro)) {
 			return null;
 		}
 
-		livro.setListaAutor(livroDTO.getAutor());
-		livro.setDataLancamento(livroDTO.getDataLancamento());
-		livro.setDescricao(livroDTO.getDescricao());
-		livro.setGenero(livroDTO.getGenero());
-		livro.setNotaMedia(livroDTO.getNotaMedia());
-		livro.setTitulo(livroDTO.getTitulo());
+		livro.setListaAutor(autorServico.listarAutor(novoLivro.getListaAutor()));
+		livro.setDataLancamento(novoLivro.getDataLancamento());
+		livro.setDescricao(novoLivro.getDescricao());
+		livro.setGenero(novoLivro.getGenero());
+		livro.setNotaMedia(novoLivro.getNotaMedia());
+		livro.setTitulo(novoLivro.getTitulo());
 
 		return livroRepository.save(livro);
+	}
+
+	@Override
+	public List<Livro> listarLivros(List<Long> listaIdLivros) {
+		List<Livro> listaLivro = new ArrayList<>();
+		Livro l;
+		for (Long id : listaIdLivros) {
+			l = buscarLivro(id);
+			if (!Objects.isNull(l)) {
+				listaLivro.add(l);
+			} else {
+				throw new LivroNaoEncontradoException(id);
+			}
+		}
+		return listaLivro;
 	}
 
 }

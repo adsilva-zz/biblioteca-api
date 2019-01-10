@@ -15,7 +15,7 @@ public class LivroDTO {
 	@NotEmpty
 	private String titulo;
 	@NotEmpty
-	private List<Integer> autor;
+	private List<Long> autor;
 	@NotNull
 	private LocalDate dataLancamento;
 	@Enumerated(EnumType.STRING)
@@ -26,7 +26,7 @@ public class LivroDTO {
 	@NotNull
 	private int notaMedia;
 
-	public LivroDTO(String titulo, List<Integer> autor, LocalDate dataLancamento, Genero genero, String descricao,
+	public LivroDTO(String titulo, List<Long> autor, LocalDate dataLancamento, Genero genero, String descricao,
 			int notaMedia) {
 		super();
 		this.titulo = titulo;
@@ -49,11 +49,11 @@ public class LivroDTO {
 		this.titulo = titulo;
 	}
 
-	public List<Integer> getAutor() {
+	public List<Long> getListaAutor() {
 		return autor;
 	}
 
-	public void setListaAutor(List<Integer> autor) {
+	public void setListaAutor(List<Long> autor) {
 		this.autor = autor;
 	}
 
