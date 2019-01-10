@@ -79,7 +79,7 @@ public class LivroServicoImpl implements LivroServico {
 			return null;
 		}
 
-		livro.setAutor(livroDTO.getAutor());
+		livro.setListaAutor(livroDTO.getAutor());
 		livro.setDataLancamento(livroDTO.getDataLancamento());
 		livro.setDescricao(livroDTO.getDescricao());
 		livro.setGenero(livroDTO.getGenero());
@@ -87,7 +87,6 @@ public class LivroServicoImpl implements LivroServico {
 		livro.setTitulo(livroDTO.getTitulo());
 
 		return livroRepository.save(livro);
-
 	}
 
 }

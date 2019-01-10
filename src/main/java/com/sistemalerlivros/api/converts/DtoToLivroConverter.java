@@ -10,7 +10,7 @@ public class DtoToLivroConverter implements Converter<LivroDTO, Livro> {
 	@Override
 	public Livro convert(LivroDTO livroDTO) {
 		Livro livro = new Livro();
-		livro.setAutor(livroDTO.getAutor());
+		livro.setListaAutor(livroDTO.getAutor());
 		livro.setDataLancamento(livroDTO.getDataLancamento());
 		livro.setDescricao(livroDTO.getDescricao());
 		livro.setGenero(livroDTO.getGenero());

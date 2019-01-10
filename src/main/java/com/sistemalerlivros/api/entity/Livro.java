@@ -1,7 +1,10 @@
 package com.sistemalerlivros.api.entity;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -9,6 +12,9 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Livro implements Comparable<Livro> {
@@ -18,7 +24,11 @@ public class Livro implements Comparable<Livro> {
 	private Long idLivro;
 	@Column(length = 150)
 	private String titulo;
-	private String autor;
+	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+	@JoinTable(name = "Livros_Autor", joinColumns = {
+			@JoinColumn(name = "idLivro", referencedColumnName = "idLivro") }, inverseJoinColumns = {
+					@JoinColumn(name = "idAutor", referencedColumnName = "idAutor") })
+	private List<Autor> autor;
 	private LocalDate dataLancamento;
 	private LocalDate dataCadastro;
 	@Enumerated(EnumType.STRING)
@@ -26,12 +36,12 @@ public class Livro implements Comparable<Livro> {
 	private String descricao;
 	private int notaMedia;
 
-	public Livro(Long idLivro, String titulo, String autor, LocalDate dataLancamento, LocalDate dataCadastro,
-			Genero genero, String descricao, int notaMedia) {
+	public Livro(Long idLivro, String titulo, LocalDate dataLancamento, LocalDate dataCadastro, Genero genero,
+			String descricao, int notaMedia) {
 		super();
 		this.idLivro = idLivro;
 		this.titulo = titulo;
-		this.autor = autor;
+		this.autor = new ArrayList<>();
 		this.dataLancamento = dataLancamento;
 		this.dataCadastro = dataCadastro;
 		this.genero = genero;
@@ -59,12 +69,12 @@ public class Livro implements Comparable<Livro> {
 		this.titulo = titulo;
 	}
 
-	public String getAutor() {
+	public List<Autor> getAutor() {
 		return autor;
 	}
 
-	public void setAutor(String autor) {
-		this.autor = autor;
+	public void setListaAutor(List<Autor> listaAutores) {
+		this.autor = listaAutores;
 	}
 
 	public LocalDate getDataLancamento() {
