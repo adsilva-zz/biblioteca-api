@@ -1,10 +1,15 @@
 package com.sistemalerlivros.api.dto;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class AutorDTO {
 
@@ -12,15 +17,15 @@ public class AutorDTO {
 	private String nome;
 	@NotNull
 	private LocalDate dataNascimento;
-	@NotEmpty
 	private List<Long> livros;
 
-	public AutorDTO(@NotEmpty String nome, @NotNull LocalDate dataNascimento, @NotEmpty List<Long> livros) {
-		super();
-		this.nome = nome;
-		this.dataNascimento = dataNascimento;
-		this.livros = livros;
-	}
+	// public AutorDTO(@NotEmpty String nome, @NotNull LocalDate dataNascimento,
+	// List<Long> livros) {
+	// super();
+	// this.nome = nome;
+	// this.dataNascimento = dataNascimento;
+	// this.livros = livros;
+	// }
 
 	public String getNome() {
 		return nome;
