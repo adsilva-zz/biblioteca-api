@@ -25,7 +25,8 @@ public class Autor {
 	@JsonBackReference
 	private List<Livro> livro;
 
-	public Autor() {}
+	public Autor() {
+	}
 
 	public Autor(String nome, LocalDate dataNascimento) {
 		super();

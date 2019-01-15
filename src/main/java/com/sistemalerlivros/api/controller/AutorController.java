@@ -50,7 +50,7 @@ public class AutorController {
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-	public ResponseEntity<Void> deletarAutor(@PathVariable(value = "id") Long id) {
+	public ResponseEntity<Void> deletarAutor(@PathVariable(name = "id") Long id) {
 		if (autorServico.deletarAutor(id)) {
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		}

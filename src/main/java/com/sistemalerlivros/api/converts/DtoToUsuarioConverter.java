@@ -1,10 +1,12 @@
 package com.sistemalerlivros.api.converts;
 
 import org.springframework.core.convert.converter.Converter;
+import org.springframework.stereotype.Component;
 
 import com.sistemalerlivros.api.dto.UsuarioDTO;
 import com.sistemalerlivros.api.entity.Usuario;
 
+@Component
 public class DtoToUsuarioConverter implements Converter<UsuarioDTO, Usuario> {
 
 	@Override
