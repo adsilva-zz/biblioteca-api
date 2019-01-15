@@ -14,7 +14,7 @@ public class LivroDTO {
 
 	@NotEmpty
 	private String titulo;
-	@NotEmpty
+	// @NotEmpty
 	private List<Long> autor;
 	@NotNull
 	private LocalDate dataLancamento;
@@ -49,11 +49,11 @@ public class LivroDTO {
 		this.titulo = titulo;
 	}
 
-	public List<Long> getListaAutor() {
+	public List<Long> getAutor() {
 		return autor;
 	}
 
-	public void setListaAutor(List<Long> autor) {
+	public void setAutor(List<Long> autor) {
 		this.autor = autor;
 	}
 
