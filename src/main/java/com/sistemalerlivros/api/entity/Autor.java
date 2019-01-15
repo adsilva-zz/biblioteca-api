@@ -11,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 public class Autor {
 
@@ -20,11 +22,10 @@ public class Autor {
 	private String nome;
 	private LocalDate dataNascimento;
 	@ManyToMany(mappedBy = "autor", cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+	@JsonBackReference
 	private List<Livro> livro;
 
-	public Autor() {
-
-	}
+	public Autor() {}
 
 	public Autor(String nome, LocalDate dataNascimento) {
 		super();

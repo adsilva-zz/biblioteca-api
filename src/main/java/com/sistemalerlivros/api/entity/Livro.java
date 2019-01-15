@@ -15,6 +15,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 public class Livro implements Comparable<Livro> {
 
@@ -27,6 +29,10 @@ public class Livro implements Comparable<Livro> {
 	@JoinTable(name = "LIVRO_AUTOR", joinColumns = {
 			@JoinColumn(name = "idLivro", referencedColumnName = "idLivro") }, inverseJoinColumns = {
 					@JoinColumn(name = "idAutor", referencedColumnName = "idAutor") })
+	// @JsonIgnore
+	// @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,
+	// property = "idAutor")
+	@JsonManagedReference
 	private List<Autor> autor;
 	private LocalDate dataLancamento;
 	private LocalDate dataCadastro;

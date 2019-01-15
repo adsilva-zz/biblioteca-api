@@ -85,7 +85,7 @@ public class LivroServicoImpl implements LivroServico {
 			return null;
 		}
 
-		livro.setListaAutor(autorServico.listarAutor(novoLivro.getListaAutor()));
+		livro.setListaAutor(autorServico.listarAutor(novoLivro.getAutor()));
 		livro.setDataLancamento(novoLivro.getDataLancamento());
 		livro.setDescricao(novoLivro.getDescricao());
 		livro.setGenero(novoLivro.getGenero());
