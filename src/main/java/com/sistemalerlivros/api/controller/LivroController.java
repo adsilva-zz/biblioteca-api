@@ -21,7 +21,7 @@ import com.sistemalerlivros.api.entity.Livro;
 import com.sistemalerlivros.api.servico.LivroServico;
 
 @RestController
-@RequestMapping("/api/v1/lerlivros/livro")
+@RequestMapping("/api/v1/biblioteca/livros")
 public class LivroController {
 
 	@Autowired
@@ -34,7 +34,8 @@ public class LivroController {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<Livro>> listarLivros(@RequestParam(name = "titulo", required = false) String titulo,
-			@RequestParam(name = "genero", required = false) String genero, @RequestParam(name = "autor", required = false) String autor) {
+			@RequestParam(name = "genero", required = false) String genero,
+			@RequestParam(name = "autor", required = false) String autor) {
 		List<Livro> livros = livroServico.listarLivros(titulo, genero, autor);
 
 		if (CollectionUtils.isEmpty(livros)) {

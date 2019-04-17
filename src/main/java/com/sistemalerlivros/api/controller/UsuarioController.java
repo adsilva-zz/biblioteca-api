@@ -22,7 +22,7 @@ import com.sistemalerlivros.api.servico.UsuarioServico;
 import com.sistemalerlivros.api.session.Session;
 
 @RestController
-@RequestMapping("/api/v1/lerlivros/usuario")
+@RequestMapping("/api/v1/biblioteca/usuarios")
 public class UsuarioController {
 
 	@Autowired

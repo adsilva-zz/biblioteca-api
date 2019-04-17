@@ -20,7 +20,7 @@ import com.sistemalerlivros.api.entity.Autor;
 import com.sistemalerlivros.api.servico.AutorServico;
 
 @RestController
-@RequestMapping("api/v1/lerLivros/autor")
+@RequestMapping("api/v1/biblioteca/autores")
 public class AutorController {
 
 	@Autowired
