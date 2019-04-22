@@ -7,8 +7,6 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>sistema ler livros</name>
 	<description>Projeto sistema ler livros em API </description>
-
-
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
@@ -17,8 +15,6 @@
 	</parent>
 
 	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
 	</properties>
 
@@ -51,12 +47,16 @@
 			<scope>provided</scope>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
+		<!-- https://mvnrepository.com/artifact/org.apache.maven/maven-plugin-api -->
+		<!-- <build> -->
+		<!-- <plugins> -->
+		<!-- <plugin> -->
+		<!-- <groupId>org.springframework.boot</groupId> -->
+		<!-- <artifactId>spring-boot-maven-plugin</artifactId> -->
+		<!-- </plugin> -->
+		<!-- </plugins> -->
+		<!-- </build> -->
 
-		<!-- <dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-log4j2</artifactId>
-		</dependency> -->
 	</dependencies>
 
 
