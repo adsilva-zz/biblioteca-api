@@ -16,8 +16,18 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.sistemalerlivros.api.entity.Autor.AutorBuilder;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+@Builder
 public class Livro implements Comparable<Livro> {
 
 	@Id
@@ -40,94 +50,6 @@ public class Livro implements Comparable<Livro> {
 	private Genero genero;
 	private String descricao;
 	private int notaMedia;
-
-	public Livro(Long idLivro, String titulo, List<Autor> autor, LocalDate dataLancamento, LocalDate dataCadastro,
-			Genero genero, String descricao, int notaMedia) {
-		super();
-		this.idLivro = idLivro;
-		this.titulo = titulo;
-		this.autor = autor;
-		this.dataLancamento = dataLancamento;
-		this.dataCadastro = dataCadastro;
-		this.genero = genero;
-		this.descricao = descricao;
-		this.notaMedia = notaMedia;
-	}
-
-	public Livro() {
-
-	}
-
-	public Long getIdLivro() {
-		return idLivro;
-	}
-
-	public void setIdLivro(Long idLivro) {
-		this.idLivro = idLivro;
-	}
-
-	public String getTitulo() {
-		return titulo;
-	}
-
-	public void setTitulo(String titulo) {
-		this.titulo = titulo;
-	}
-
-	public List<Autor> getAutor() {
-		return autor;
-	}
-
-	public void setListaAutor(List<Autor> autor) {
-		this.autor = autor;
-	}
-
-	public LocalDate getDataLancamento() {
-		return dataLancamento;
-	}
-
-	public void setDataLancamento(LocalDate dataLancamento) {
-		this.dataLancamento = dataLancamento;
-	}
-
-	public LocalDate getDataCadastro() {
-		return dataCadastro;
-	}
-
-	public void setDataCadastro(LocalDate dataCadastro) {
-		this.dataCadastro = dataCadastro;
-	}
-
-	public Genero getGenero() {
-		return genero;
-	}
-
-	public void setGenero(Genero genero) {
-		this.genero = genero;
-	}
-
-	public String getDescricao() {
-		return descricao;
-	}
-
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
-	}
-
-	public int getNotaMedia() {
-		return notaMedia;
-	}
-
-	public void setNotaMedia(int notaMedia) {
-		this.notaMedia = notaMedia;
-	}
-
-	@Override
-	public String toString() {
-		return "Livro [idLivro=" + idLivro + ", titulo=" + titulo + ", autor=" + autor + ", dataLancamento="
-				+ dataLancamento + ", dataCadastro=" + dataCadastro + ", genero=" + genero + ", descricao=" + descricao
-				+ ", notaMedia=" + notaMedia + "]";
-	}
 
 	@Override
 	public int compareTo(Livro livro) {

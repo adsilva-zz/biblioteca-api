@@ -17,7 +17,10 @@ import com.sistemalerlivros.api.repository.AutorRepository;
 import com.sistemalerlivros.api.servico.AutorServico;
 import com.sistemalerlivros.api.servico.LivroServico;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Service
+@Slf4j
 public class AutorServicoImpl implements AutorServico {
 
 	@Autowired
@@ -32,6 +35,9 @@ public class AutorServicoImpl implements AutorServico {
 	@Override
 	public Autor cadastrarAutor(AutorDTO autorDTO) {
 		Autor autor = conversionService.convert(autorDTO, Autor.class);
+		log.info("Savado com sucesso!");
+		log.debug("ddfd");
+		log.warn("O id {} do cliente {} salvo com sucesso", autor.getIdAutor(), autor.getNome());
 		return autorRepository.save(autor);
 	}
 
@@ -48,7 +54,7 @@ public class AutorServicoImpl implements AutorServico {
 		}
 		autor.setNome(novoAutor.getNome());
 		autor.setDataNascimento(novoAutor.getDataNascimento());
-		autor.setLivro(livroServico.listarLivros(novoAutor.getLivrosAutor()));
+		autor.setLivro(livroServico.listarLivros(novoAutor.getLivros()));
 		return autorRepository.save(autor);
 	}
 
@@ -81,6 +87,7 @@ public class AutorServicoImpl implements AutorServico {
 			if (!ObjectUtils.isEmpty(autor)) {
 				listaAutores.add(autor);
 			} else {
+				log.warn("asdfdsf");
 				throw new AutorNaoEncontradoException(id);
 			}
 		}

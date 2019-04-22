@@ -7,6 +7,17 @@ import javax.validation.constraints.NotNull;
 
 import com.sistemalerlivros.api.entity.Perfil;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@ToString
 public class UsuarioDTO {
 
 	@NotEmpty
@@ -20,64 +31,4 @@ public class UsuarioDTO {
 	private String email;
 	@NotNull
 	private Perfil perfil;
-
-	public UsuarioDTO() {
-
-	}
-
-	public UsuarioDTO(String nome, String user, String senha, String email, Perfil perfil) {
-		super();
-		this.nome = nome;
-		this.user = user;
-		this.senha = senha;
-		this.email = email;
-		this.perfil = perfil;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public String getUser() {
-		return user;
-	}
-
-	public void setUser(String user) {
-		this.user = user;
-	}
-
-	public String getSenha() {
-		return senha;
-	}
-
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public Perfil getPerfil() {
-		return perfil;
-	}
-
-	public void setPerfil(Perfil perfil) {
-		this.perfil = perfil;
-	}
-
-	@Override
-	public String toString() {
-		return "UsuarioDTO [nome=" + nome + ", user=" + user + ", senha=" + senha + ", email=" + email + ", perfil="
-				+ perfil + "]";
-	}
-
 }

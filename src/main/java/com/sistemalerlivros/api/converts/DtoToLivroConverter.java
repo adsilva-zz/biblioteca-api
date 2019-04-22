@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 
 import com.sistemalerlivros.api.dto.LivroDTO;
 import com.sistemalerlivros.api.entity.Livro;
+import com.sistemalerlivros.api.entity.Livro.LivroBuilder;
 import com.sistemalerlivros.api.servico.AutorServico;
 
 @Component
@@ -16,14 +17,11 @@ public class DtoToLivroConverter implements Converter<LivroDTO, Livro> {
 
 	@Override
 	public Livro convert(LivroDTO livroDTO) {
-		Livro livro = new Livro();
-		livro.setListaAutor(autorServico.listarAutor(livroDTO.getAutor()));
-		livro.setDataLancamento(livroDTO.getDataLancamento());
-		livro.setDescricao(livroDTO.getDescricao());
-		livro.setGenero(livroDTO.getGenero());
-		livro.setNotaMedia(livroDTO.getNotaMedia());
-		livro.setTitulo(livroDTO.getTitulo());
-		return livro;
+		LivroBuilder livroBuilder = Livro.builder().autor(autorServico.listarAutor(livroDTO.getAutor()))
+				.dataLancamento(livroDTO.getDataLancamento()).descricao(livroDTO.getDescricao())
+				.genero(livroDTO.getGenero()).notaMedia(livroDTO.getNotaMedia()).titulo(livroDTO.getTitulo());
+
+		return livroBuilder.build();
 	}
 
 }

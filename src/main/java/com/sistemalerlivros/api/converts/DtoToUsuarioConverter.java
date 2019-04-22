@@ -5,20 +5,17 @@ import org.springframework.stereotype.Component;
 
 import com.sistemalerlivros.api.dto.UsuarioDTO;
 import com.sistemalerlivros.api.entity.Usuario;
+import com.sistemalerlivros.api.entity.Usuario.UsuarioBuilder;
 
 @Component
 public class DtoToUsuarioConverter implements Converter<UsuarioDTO, Usuario> {
 
 	@Override
 	public Usuario convert(UsuarioDTO usuarioDTO) {
-		Usuario user = new Usuario();
+		UsuarioBuilder usuarioBuilder = Usuario.builder().email(usuarioDTO.getEmail()).nome(usuarioDTO.getNome())
+				.perfil(usuarioDTO.getPerfil()).senha(usuarioDTO.getSenha()).user(usuarioDTO.getUser());
 
-		user.setEmail(usuarioDTO.getEmail());
-		user.setNome(usuarioDTO.getNome());
-		user.setPerfil(usuarioDTO.getPerfil());
-		user.setSenha(usuarioDTO.getSenha());
-		user.setUser(usuarioDTO.getUser());
-		return user;
+		return usuarioBuilder.build();
 	}
 
 }

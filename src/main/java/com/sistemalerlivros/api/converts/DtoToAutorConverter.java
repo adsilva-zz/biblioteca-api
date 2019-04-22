@@ -9,6 +9,7 @@ import org.springframework.util.ObjectUtils;
 
 import com.sistemalerlivros.api.dto.AutorDTO;
 import com.sistemalerlivros.api.entity.Autor;
+import com.sistemalerlivros.api.entity.Autor.AutorBuilder;
 import com.sistemalerlivros.api.servico.LivroServico;
 
 @Component
@@ -19,14 +20,15 @@ public class DtoToAutorConverter implements Converter<AutorDTO, Autor> {
 
 	@Override
 	public Autor convert(AutorDTO autorDTO) {
-		Autor autor = new Autor();
-		autor.setNome(autorDTO.getNome());
-		autor.setDataNascimento(autorDTO.getDataNascimento());
-		if (!ObjectUtils.isEmpty(autorDTO.getLivrosAutor())) {
-			autor.setLivro(livroServico.listarLivros(autorDTO.getLivrosAutor()));
+		AutorBuilder autorBuilder = Autor.builder().nome(autorDTO.getNome())
+				.dataNascimento(autorDTO.getDataNascimento());
+
+		if (!ObjectUtils.isEmpty(autorDTO.getLivros())) {
+			autorBuilder.livro(livroServico.listarLivros(autorDTO.getLivros()));
+		} else {
+			autorBuilder.livro(new ArrayList<>());
 		}
-		autor.setLivro(new ArrayList<>());
-		return autor;
+		return autorBuilder.build();
 	}
 
 }
