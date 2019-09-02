@@ -1,5 +1,6 @@
 package com.sistemalerlivros.api.exception;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 
@@ -31,5 +32,11 @@ public class ControllerAdviceCustom {
 	public ResponseEntity<Message<Long>> autorNaoEncontradoException(AutorNaoEncontradoException ex) {
 		Message<Long> mensagem = new Message<>("Autor não encontrado", ex.getIdAutor());
 		return new ResponseEntity<Message<Long>>(mensagem, HttpStatus.BAD_REQUEST);
+	}
+
+	@ExceptionHandler(DataNascimentoInvalidaException.class)
+	public ResponseEntity<Message<LocalDate>> dataNascimentoInvalidaException(DataNascimentoInvalidaException ex){
+		Message<LocalDate> message = new Message<>("Data de nascimento inválida", ex.getDataNascimento());
+		return new ResponseEntity<Message<LocalDate>>(message, HttpStatus.BAD_REQUEST);
 	}
 }

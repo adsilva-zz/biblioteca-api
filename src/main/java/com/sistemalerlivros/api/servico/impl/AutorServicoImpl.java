@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
+import com.sistemalerlivros.api.exception.DataNascimentoInvalidaException;
+import com.sistemalerlivros.api.utils.Utilitarios;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.stereotype.Service;
@@ -34,10 +36,10 @@ public class AutorServicoImpl implements AutorServico {
 
 	@Override
 	public Autor cadastrarAutor(AutorDTO autorDTO) {
+		if (!Utilitarios.validarDataNascimento(autorDTO.getDataNascimento()))
+			throw new DataNascimentoInvalidaException();
+
 		Autor autor = conversionService.convert(autorDTO, Autor.class);
-		log.info("Savado com sucesso!");
-		log.debug("ddfd");
-		log.warn("O id {} do cliente {} salvo com sucesso", autor.getIdAutor(), autor.getNome());
 		return autorRepository.save(autor);
 	}
 

@@ -1,10 +1,6 @@
 package com.sistemalerlivros.api.exception;
 
 public class AutorNaoEncontradoException extends RuntimeException {
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private Long idAutor;
 
