@@ -52,11 +52,5 @@ public class AutorServicoTest extends ConfiguracaoTest {
         final LivroDTO livroDTO = LivroTemplate.getLivroDTO();
         livroDTO.getAutor().add(autorCadastrado.getIdAutor());
         assertThat(livroServico.cadastrarLivro(livroDTO).getAutor().get(0).getIdAutor()).isEqualTo(autorCadastrado.getIdAutor());
-
-        autorServico.buscarAutor(1L);
-
-        livroServico.buscarLivro(2l);
-
-
     }
 }

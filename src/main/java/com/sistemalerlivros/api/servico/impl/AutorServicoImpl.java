@@ -81,17 +81,11 @@ public class AutorServicoImpl implements AutorServico {
 
 	@Override
 	public List<Autor> listarAutor(List<Long> listaIdAutor) {
-		Autor autor;
 		List<Autor> listaAutores = new ArrayList<>();
 
 		for (Long id : listaIdAutor) {
-			autor = buscarAutor(id);
-			if (!ObjectUtils.isEmpty(autor)) {
-				listaAutores.add(autor);
-			} else {
-				log.warn("asdfdsf");
-				throw new AutorNaoEncontradoException(id);
-			}
+			Optional.ofNullable(buscarAutor(id)).map(listaAutores::add)
+					.orElseThrow(()-> new AutorNaoEncontradoException(id));
 		}
 		return listaAutores;
 	}

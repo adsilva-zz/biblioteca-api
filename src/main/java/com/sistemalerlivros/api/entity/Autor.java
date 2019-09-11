@@ -21,7 +21,7 @@ public class Autor {
 	private Long idAutor;
 	private String nome;
 	private LocalDate dataNascimento;
-	@ManyToMany(mappedBy = "autor", cascade = { CascadeType.ALL}, fetch = FetchType.EAGER)
+	@ManyToMany(mappedBy = "autor", cascade = { CascadeType.ALL}, fetch = FetchType.LAZY)
 	@JsonBackReference
 	private List<Livro> livro;
 
