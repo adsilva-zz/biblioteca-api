@@ -1,29 +1,18 @@
 package com.sistemalerlivros.api.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import lombok.*;
+
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
+@Data
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
 @Builder
+//@EqualsAndHashCode(exclude = "livro")
 public class Autor {
 
 	@Id
@@ -32,8 +21,11 @@ public class Autor {
 	private Long idAutor;
 	private String nome;
 	private LocalDate dataNascimento;
-	@ManyToMany(mappedBy = "autor", cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+	@ManyToMany(mappedBy = "autor", cascade = { CascadeType.ALL}, fetch = FetchType.EAGER)
 	@JsonBackReference
 	private List<Livro> livro;
+
+
+
 
 }

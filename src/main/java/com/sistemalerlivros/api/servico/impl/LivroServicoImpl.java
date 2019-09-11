@@ -11,6 +11,7 @@ import org.springframework.core.convert.ConversionService;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
@@ -36,6 +37,7 @@ public class LivroServicoImpl implements LivroServico {
 	private ConversionService conversionService;
 
 	@Override
+	@Transactional
 	public Livro cadastrarLivro(LivroDTO livroDTO) {
 		Livro livro = conversionService.convert(livroDTO, Livro.class);
 		livro.setDataCadastro(LocalDate.now());

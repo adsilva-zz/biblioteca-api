@@ -2,21 +2,31 @@ package com.sistemalerlivros.api.servico;
 
 import com.sistemalerlivros.api.ConfiguracaoTest;
 import com.sistemalerlivros.api.dto.AutorDTO;
+import com.sistemalerlivros.api.dto.LivroDTO;
 import com.sistemalerlivros.api.entity.Autor;
+import com.sistemalerlivros.api.entity.Livro;
 import com.sistemalerlivros.api.exception.DataNascimentoInvalidaException;
+import com.sistemalerlivros.api.repository.LivroRepository;
 import com.sistemalerlivros.api.template.AutorTemplate;
+import com.sistemalerlivros.api.template.LivroTemplate;
+import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDate;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
+import static org.assertj.core.api.Assertions.*;
 
 public class AutorServicoTest extends ConfiguracaoTest {
 
     @Autowired
     private AutorServico autorServico;
+
+    @Autowired
+    private LivroRepository livroRepository;
+
+    @Autowired
+    private LivroServico livroServico;
 
     @Test
     public void cadastrarAutorComSucesso() {
@@ -36,5 +46,17 @@ public class AutorServicoTest extends ConfiguracaoTest {
         assertThatExceptionOfType(DataNascimentoInvalidaException.class).isThrownBy(() -> autorServico.cadastrarAutor(autorDTO));
     }
 
-    // verificar se o livro está setado no autor
+    @Test
+        public void verificarRelacionamentoLivroComAutor(){
+        Autor autorCadastrado = autorServico.cadastrarAutor(AutorTemplate.getAutorDto());
+        final LivroDTO livroDTO = LivroTemplate.getLivroDTO();
+        livroDTO.getAutor().add(autorCadastrado.getIdAutor());
+        assertThat(livroServico.cadastrarLivro(livroDTO).getAutor().get(0).getIdAutor()).isEqualTo(autorCadastrado.getIdAutor());
+
+        autorServico.buscarAutor(1L);
+
+        livroServico.buscarLivro(2l);
+
+
+    }
 }
