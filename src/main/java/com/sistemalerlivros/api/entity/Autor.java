@@ -25,7 +25,4 @@ public class Autor {
 	@JsonBackReference
 	private List<Livro> livro;
 
-
-
-
 }
