@@ -37,6 +37,7 @@ public class Livro implements Comparable<Livro> {
 	private Genero genero;
 	private String descricao;
 	private int notaMedia;
+	private StatusLivro status; 
 
 	@Override
 	public int compareTo(Livro livro) {
