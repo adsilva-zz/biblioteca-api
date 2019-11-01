@@ -2,10 +2,7 @@ package com.sistemalerlivros.api.entity;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Data
@@ -19,7 +16,9 @@ public class Classificacao {
     @Setter(AccessLevel.NONE)
     private Long idClassificacao;
     private StatusLivro statusLivro;
+    @ManyToOne
+    @JoinColumn(name = "idLivro", nullable = false)
     private Livro livro;
-    private  Usuario usuario;
+    private Usuario usuario;
 
 }
