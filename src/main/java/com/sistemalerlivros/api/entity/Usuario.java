@@ -23,5 +23,7 @@ public class Usuario {
 	private String email;
 	@Enumerated(value = EnumType.STRING)
 	private Perfil perfil;
+	@OneToMany(mappedBy = "usuario")
+	private Classificacao classificacao;
 
 }

@@ -19,6 +19,8 @@ public class Classificacao {
     @ManyToOne
     @JoinColumn(name = "idLivro", nullable = false)
     private Livro livro;
+    @ManyToOne
+    @JoinColumn(name = "idUsuario", nullable = false)
     private Usuario usuario;
 
 }
